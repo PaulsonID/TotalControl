@@ -21,13 +21,13 @@ public class SwitchOnWall : InteractStatus
         if (gameObject.GetComponent<InteractStatus>().GetStatus()){
 		gameObject.GetComponent<AudioSource>().Play(0);
 		if (status_lamp){
-		switch_mech.transform.eulerAngles=new Vector3(-10f,0,0);
+		switch_mech.transform.localEulerAngles=new Vector3(-10f,0,0);
 		light_ob.GetComponent<Light>().enabled=false;
 		lamp.GetComponent<Renderer>().material=off_lamp;
 		status_lamp=false;
 		}
 		else if (!status_lamp){
-		switch_mech.transform.eulerAngles=new Vector3(10f,0,0);
+		switch_mech.transform.localEulerAngles=new Vector3(10f,0,0);
 		light_ob.GetComponent<Light>().enabled=true;
 		lamp.GetComponent<Renderer>().material=on_lamp;
 		status_lamp=true;
