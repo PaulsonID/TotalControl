@@ -970,10 +970,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactive: 0
   interacted: 0
-  terminalInputField: {fileID: 0}
+  terminalInputField: {fileID: 1718570846}
   text: {fileID: 0}
   inputValue: 
-  terminalVisualizationInput: {fileID: 0}
 --- !u!1 &570521755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224b77a2f0d710749a548035a8330588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactive: 0
   light_ob: {fileID: 328501317}
   lamp: {fileID: 337934671}
   on_lamp: {fileID: 2100000, guid: 36a172c091cac764680325719bfaf06d, type: 2}
@@ -2423,9 +2423,9 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_RichText: 1
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_OnFocusSelectAll: 1
+  m_OnFocusSelectAll: 0
   m_ResetOnDeActivation: 1
-  m_RestoreOriginalTextOnEscape: 1
+  m_RestoreOriginalTextOnEscape: 0
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
