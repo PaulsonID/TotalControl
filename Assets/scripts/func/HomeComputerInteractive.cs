@@ -21,20 +21,20 @@ public class HomeComputerInteractive : InteractStatus
 
     private void Update()
     {
-        if (GetStatus()) StartWorkToPC();
+        if (GetStatusInteractive()) StartWorkToPC();
 
         /*
-            if (GetStatus()){
+            if (GetStatusInteractive()){
 
                 if (Input.GetKey(KeyCode.Escape)){
-                    SetStatus(false);
+                    SetStatusInteractive(false);
                 }
 
                 if (Input.GetKey(KeyCode.Return)){
                 input_text=text1.GetComponent<TMP_Text>().text;
                 }
             }
-            else if (!GetStatus()){
+            else if (!GetStatusInteractive()){
                 canvas.GetComponent<TMP_InputField>().ActivateInputField();
                 text.GetComponent<TextMesh>().text+=">>Ghostmaker:Привет \n";   
               }
@@ -44,7 +44,7 @@ public class HomeComputerInteractive : InteractStatus
 
     private void StartWorkToPC()
     {
-        // Приветствие - once
+        // Приветствие. Once
 
         // Режим ввода
         if (!interacted) terminalInputField.ActivateInputField();
@@ -53,7 +53,7 @@ public class HomeComputerInteractive : InteractStatus
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //terminalInputField.DeactivateInputField();
-            SetStatus(false);
+            SetStatusInteractive(false);
             interacted = false;
         }
         //else if(Input.GetMouseButtonDown(1)){
@@ -66,7 +66,4 @@ public class HomeComputerInteractive : InteractStatus
         }
         // Режим ожидание ответа
     }
-
-
-
 }
