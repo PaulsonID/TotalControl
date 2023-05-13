@@ -2,44 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shelf : MonoBehaviour
-{	public GameObject leftDoor;
-	public GameObject rightDoor;
-	public bool left_st;
-	public bool right_st;
-	public Animation anim;
-    // Start is called before the first frame update
-    void Start()
+public class Shelf : MonoBehaviour
+{
+    private InteractStatus leftDoor;
+    private InteractStatus rightDoor;
+
+    private bool isOpenLeftDoor = false;
+    private bool isOpenRightDoor = false;
+
+    private Animation _animation;
+
+    private string animationOpenLeftDoor = "left_door|open";
+    private string animationCloseLeftDoor = "left_door|close";
+    private string animationOpenRightDoor = "right_door|open";
+    private string animationCloseRightDoor = "right_door|close";
+
+
+    private void Start()
     {
-        
+        leftDoor = transform.GetChild(0).GetComponent<InteractStatus>();
+        rightDoor = transform.GetChild(1).GetComponent<InteractStatus>();
+
+        _animation = GetComponent<Animation>();
     }
 
-    // Update is called once per frame
-    void Update()
-    { if (!anim.isPlaying){
-    if (leftDoor.GetComponent<InteractStatus>().GetStatus() && !left_st )
-	{
-		 anim.Play("left_door|open");
-		 left_st=true;
-		 leftDoor.GetComponent<InteractStatus>().SetStatus(false);
-	}
-	else if (leftDoor.GetComponent<InteractStatus>().GetStatus() && left_st)
-	{
-		 anim.Play("left_door|close");
-		 left_st=false;
-		 leftDoor.GetComponent<InteractStatus>().SetStatus(false);
-	}	
-	if (rightDoor.GetComponent<InteractStatus>().GetStatus() && !right_st )
-	{
-		 anim.Play("right_door|open");
-		 right_st=true;
-		 rightDoor.GetComponent<InteractStatus>().SetStatus(false);
-	}
-	else if (rightDoor.GetComponent<InteractStatus>().GetStatus() && right_st)
-	{
-		 anim.Play("right_door|close");
-		 right_st=false;
-		 rightDoor.GetComponent<InteractStatus>().SetStatus(false);
-	}		
-    }}
+    private void Update() => MoveDoors();
+
+    private void MoveDoors()
+    {
+        if (!_animation.isPlaying)
+        {
+            string animationDoor = "";
+
+            if (leftDoor.GetStatusInteractive() && !isOpenLeftDoor)
+            {
+                animationDoor = animationOpenLeftDoor;
+                isOpenLeftDoor = true;
+                leftDoor.SetStatusInteractive(false);
+            }
+            else if (leftDoor.GetStatusInteractive() && isOpenLeftDoor)
+            {
+                animationDoor = animationCloseLeftDoor;
+                isOpenLeftDoor = false;
+                leftDoor.SetStatusInteractive(false);
+            }
+            if (rightDoor.GetStatusInteractive() && !isOpenRightDoor)
+            {
+                animationDoor = animationOpenRightDoor;
+                isOpenRightDoor = true;
+                rightDoor.SetStatusInteractive(false);
+            }
+            else if (rightDoor.GetStatusInteractive() && isOpenRightDoor)
+            {
+                animationDoor = animationCloseRightDoor;
+                isOpenRightDoor = false;
+                rightDoor.SetStatusInteractive(false);
+            }
+
+            if (animationDoor != "") PlayAnimation(animationDoor);
+        }
+    }
+
+    private void PlayAnimation(string animationName) => _animation.Play(animationName);
 }

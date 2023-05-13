@@ -6,7 +6,9 @@ public class InteractStatus : MonoBehaviour
 {
 	[SerializeField] private bool interactive = false;
 	
-	public bool GetStatus() => interactive;
+	public bool GetStatusInteractive() => interactive;
 	
-	public void SetStatus(bool newStatus) => interactive = newStatus;
+	public void SetStatusInteractive(bool newStatus) => interactive = newStatus;
+
+
 }

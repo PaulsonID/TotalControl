@@ -29,7 +29,7 @@ public class FPS_interactive : MonoBehaviour
 				if (hit.collider.tag=="interact"){
 					InteractStatus interactStatus = hit.collider.gameObject.GetComponent<InteractStatus>();
 					
-					if (!interactStatus.GetStatus()) interactStatus.SetStatus(true);
+					if (!interactStatus.GetStatusInteractive()) interactStatus.SetStatusInteractive(true);
 				}
 			}
 		}
