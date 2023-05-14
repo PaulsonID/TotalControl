@@ -3,8 +3,8 @@ using UnityEngine;
 public class SwitchLight : MonoBehaviour
 {
     private Transform switcher;
-    private float positionOn = -10.0f;
-    private float positionOff = 10.0f;
+    private float positionOn = 10.0f;
+    private float positionOff = -10.0f;
 
 
     private void Awake() => switcher = transform;

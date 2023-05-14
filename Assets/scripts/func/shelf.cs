@@ -32,7 +32,7 @@ public class Shelf : MonoBehaviour
     {
         if (!_animation.isPlaying)
         {
-            string animationDoor = "";
+            string animationDoor = ""; //dgfgfbfdghb
 
             if (leftDoor.GetStatusInteractive() && !isOpenLeftDoor)
             {

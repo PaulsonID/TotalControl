@@ -7,7 +7,7 @@ public class LampRoom : MonoBehaviour
 
     [Header("Min and max Range light")]
     [SerializeField] private float minRange = 0.0f;
-    [SerializeField] private float maxRange = 10.0f;
+    [SerializeField] private float maxRange = 8.0f;
 
     // Intensity material of lamp
     private float minIntensity = -10.0f;
