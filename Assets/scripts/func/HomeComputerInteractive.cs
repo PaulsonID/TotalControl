@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text.RegularExpressions;
 
 public class HomeComputerInteractive : InteractStatus
 {
@@ -13,11 +14,19 @@ public class HomeComputerInteractive : InteractStatus
     public GameObject text;
 
     public string inputValue;
+	public Dictionary< string, string> list = new Dictionary<string, string>() // словарь хранящий все ответы на реплики игрока 
+	{
+		["hello"] = "ну привет, мудила",
+		["привет"]="ну привет, мудила",
+		["здорова"]="ну привет, мудила"
+	};
 
     // Hello World
 
     // TMP_Text terminalVisualizationInput;
-
+	private void Start() {
+		//list.Add("hello", "Ну привет, мудила");
+	}
 
     private void Update()
     {
@@ -60,10 +69,28 @@ public class HomeComputerInteractive : InteractStatus
         //	terminalInputField.DeactivateInputField();
         //}
 
-        else if (Input.GetKeyDown(KeyCode.Return))
+        else if (Input.GetKeyUp(KeyCode.Return) & terminalInputField.text!="")
         {
-            //	inputValue = terminalVisualizationInput.text;
+		string pattern=@"\s+";
+        inputValue=terminalInputField.text;
+		inputValue=inputValue.ToLower();
+		//inputValue=Regex.Replace(inputValue, @"[^\s]", "x");
+		//Regex regex = new Regex(pattern);
+		//inputValue=regex.Replace(terminalInputField.text,inputValue);
+		text.GetComponent<TMP_Text>().text+="\n" + terminalInputField.text;
+		Answer(inputValue);
+		
+		//	inputValue = terminalVisualizationInput.text;
         }
         // Режим ожидание ответа
     }
+	private void Answer(string question) // функция получает обработанную регулярными выражениями из поля ввода и при наличии соответствия в словаре выводит ответ на экран
+	{	
+		terminalInputField.text="";	
+		if (list.ContainsKey(question)){ 
+			text.GetComponent<TMP_Text>().text+="\n" + list[question];
+		}
+		SetStatusInteractive(true);
+		
+	}
 }
