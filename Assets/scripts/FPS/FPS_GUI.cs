@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FPS_GUI : MonoBehaviour
 {	public Texture cursor;
+	public bool switch_cursor;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,8 @@ public class FPS_GUI : MonoBehaviour
         
     }
 	void OnGUI(){
-		GUI.DrawTexture(new Rect(Screen.width/2-Screen.width/256f, Screen.height/2-Screen.height/120, Screen.width/128f,Screen.height/60),cursor );
+		if (!switch_cursor){
+		GUI.DrawTexture(new Rect(Screen.width/2-Screen.width/256f, Screen.height/2-Screen.height/120, Screen.width/128f,Screen.height/60),cursor );}
 	}
 	
 }

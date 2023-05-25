@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - interact
+  - cursor_interact
+  - WS_UI
+  - WS_Button
   layers:
   - Default
   - TransparentFX

@@ -8,9 +8,12 @@ public class lock_numpad : InteractStatus
 {
 	public GameObject locking_device;
 	public string code;
+	public GameObject cursor;
+	public GameObject button1;
 	[SerializeField]	private string input;
+	[SerializeField]	private bool opened=false; // флаг открыт ли сейф, не даёт повторно запускать ввод кода на открытом сейфе
 	public GameObject text;
-    // Start is called before the first frame update
+	
 	enum opening_mode 
 	{
 		sliding,
@@ -19,10 +22,11 @@ public class lock_numpad : InteractStatus
 		rotation
 	};
 	[SerializeField] private opening_mode mode;
-    // Update is called once per frame
+
     void Update()
     {
-     if (GetStatusInteractive())  Input_code();
+     if (GetStatusInteractive() & !opened)  {Input_code(); Cursor.visible = true;}
+	 else if (GetStatusInteractive() & opened)  {SetStatusInteractive(false); Cursor.visible = false;}
     }
 	void Input_code () 
 	{	if (input.Length<code.Length){
@@ -71,7 +75,10 @@ public class lock_numpad : InteractStatus
 		if(input==code){
 			if (mode==opening_mode.hiding){
 				Hiding();
+				opened=true;
 			}
+			input="";
+			SetStatusInteractive(false);
 		}
 		if (input!=code){input="";}
 	}
@@ -87,6 +94,7 @@ public class lock_numpad : InteractStatus
 		
 	}
 	void Hiding(){
-		
+	locking_device.SetActive(false);
+
 	}
 }
